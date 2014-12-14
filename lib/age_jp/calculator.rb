@@ -31,7 +31,7 @@ module AgeJp
     private
 
     def calculate_age(datetime)
-      (datetime.strftime('%Y%m%d').to_i - @birthday.strftime('%Y%m%d').to_i) / 10000
+      (datetime.strftime('%Y%m%d').to_i - @birthday.strftime('%Y%m%d').to_i) / 10_000
     end
 
     def tokyo
