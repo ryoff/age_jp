@@ -1,5 +1,5 @@
-require "age_jp/version"
-
-module AgeJp
-  # Your code goes here...
-end
+require 'date'
+require 'age_jp/calculator'
+require 'age_jp/version'
+require 'active_support'
+require 'active_support/core_ext'
