@@ -4,16 +4,28 @@ module AgeJp
       @birthday = birthday
     end
 
-    def age_jp
+    def age
       return unless valid_birthday?
 
       (calculate_age(today) - calculate_age(tomorrow)).zero? ? calculate_age(today) : calculate_age(tomorrow)
     end
 
-    def age
+    def age_at(date)
+      return unless valid_birthday? && valid_date?(date)
+
+      (calculate_age(date) - calculate_age(date.days_since(1))).zero? ? calculate_age(date) : calculate_age(date.days_since(1))
+    end
+
+    def age_non_jp
       return unless valid_birthday?
 
       calculate_age(today)
+    end
+
+    def age_non_jp_at(date)
+      return unless valid_birthday? && valid_date?(date)
+
+      calculate_age(date)
     end
 
     def today
@@ -40,9 +52,13 @@ module AgeJp
     end
 
     def valid_birthday?
-      @birthday && @birthday.is_a?(Date)
+      valid_date?(@birthday)
+    end
+
+    def valid_date?(date)
+      date && date.is_a?(Date)
     rescue
-      raise ArgumentError, 'invalid birthday'
+      raise ArgumentError, 'invalid date'
     end
   end
 end

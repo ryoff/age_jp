@@ -29,8 +29,8 @@ Or install it yourself as:
 Timecop.freeze(Time.new(2014, 12, 31))
 
 aj = AgeJp::Calculator.new(Date.new(2000, 1, 1))
-aj.age    # 14
-aj.age_jp # 15
+aj.age_non_jp # 14
+aj.age        # 15
 ```
 
 ## Contributing

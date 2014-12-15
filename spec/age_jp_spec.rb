@@ -6,32 +6,6 @@ describe AgeJp do
   describe '#initialize' do
   end
 
-  describe '#age_jp' do
-    context 'when today is 2014/12/30' do
-      before { Timecop.freeze(Time.new(2014, 12, 30)) }
-
-      it 'return 14' do
-        expect(age_jp.age_jp).to eq 14
-      end
-    end
-
-    context 'when today is 2014/12/31' do
-      before { Timecop.freeze(Time.new(2014, 12, 31)) }
-
-      it 'return 15' do
-        expect(age_jp.age_jp).to eq 15
-      end
-    end
-
-    context 'when today is 2015/1/1' do
-      before { Timecop.freeze(Time.new(2015, 1, 1)) }
-
-      it 'return 15' do
-        expect(age_jp.age_jp).to eq 15
-      end
-    end
-  end
-
   describe '#age' do
     context 'when today is 2014/12/30' do
       before { Timecop.freeze(Time.new(2014, 12, 30)) }
@@ -44,8 +18,8 @@ describe AgeJp do
     context 'when today is 2014/12/31' do
       before { Timecop.freeze(Time.new(2014, 12, 31)) }
 
-      it 'return 14' do
-        expect(age_jp.age).to eq 14
+      it 'return 15' do
+        expect(age_jp.age).to eq 15
       end
     end
 
@@ -54,6 +28,32 @@ describe AgeJp do
 
       it 'return 15' do
         expect(age_jp.age).to eq 15
+      end
+    end
+  end
+
+  describe '#age_non_jp' do
+    context 'when today is 2014/12/30' do
+      before { Timecop.freeze(Time.new(2014, 12, 30)) }
+
+      it 'return 14' do
+        expect(age_jp.age_non_jp).to eq 14
+      end
+    end
+
+    context 'when today is 2014/12/31' do
+      before { Timecop.freeze(Time.new(2014, 12, 31)) }
+
+      it 'return 14' do
+        expect(age_jp.age_non_jp).to eq 14
+      end
+    end
+
+    context 'when today is 2015/1/1' do
+      before { Timecop.freeze(Time.new(2015, 1, 1)) }
+
+      it 'return 15' do
+        expect(age_jp.age_non_jp).to eq 15
       end
     end
   end
