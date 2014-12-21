@@ -29,8 +29,12 @@ Or install it yourself as:
 Timecop.freeze(Time.new(2014, 12, 31))
 
 birthday = Date.new(2000, 1, 1)
-birthday.age    # 15
-birthday.age_jp # 14
+birthday.age                                # 14 (通常の年齢)
+birthday.age_at(date)                       # same as birthday.age_at(Date.today)
+birthday.age_jp                             # 15 (日本の法律準拠)
+birthday.age_jp_at(date)                    # same as birthday.age_jp_at(Date.today)
+birthday.east_asian_age_reckoning           # 15 (数え年)
+birthday.east_asian_age_reckoning_at(date)  # same as birthday.east_asian_age_reckoning_at(Date.today)
 ```
 
 ## Contributing
