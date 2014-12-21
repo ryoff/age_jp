@@ -28,9 +28,9 @@ Or install it yourself as:
 ```lang:age_jp.rb
 Timecop.freeze(Time.new(2014, 12, 31))
 
-aj = AgeJp::Calculator.new(Date.new(2000, 1, 1))
-aj.age_non_jp # 14
-aj.age        # 15
+birthday = Date.new(2000, 1, 1)
+birthday.age    # 15
+birthday.age_jp # 14
 ```
 
 ## Contributing

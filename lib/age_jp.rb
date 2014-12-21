@@ -1,5 +1,6 @@
 require 'date'
-require 'age_jp/calculator'
 require 'age_jp/version'
+require 'age_jp/calculator'
+require 'age_jp/core_ext/date'
 require 'active_support'
 require 'active_support/core_ext'
