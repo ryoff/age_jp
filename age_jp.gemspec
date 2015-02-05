@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["ryoffes@gmail.com"]
   spec.summary       = %q{A simpel age calculator for a law of Japan.}
   spec.description   = %q{A simpel age calculator for a law of Japan.}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/ryoff/age_jp"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -18,12 +18,11 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "activesupport"
+  spec.add_dependency "activesupport", '~> 3.0'
 
   spec.add_development_dependency "bundler", "~> 1.7"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec"
-  spec.add_development_dependency "pry"
-  spec.add_development_dependency "timecop"
-  spec.add_development_dependency "activesupport"
+  spec.add_development_dependency "timecop", '~> 0.7'
+  spec.add_development_dependency 'pry'
 end
