@@ -26,6 +26,31 @@ describe AgeJp do
 
       after { Timecop.return }
     end
+
+    context "birthday is 2000/02/29. " do
+      let(:birthday) { Date.new(2000, 2, 29) }
+      subject(:age) { birthday.age }
+
+      context 'when today is 2015/02/28' do
+        before { Timecop.freeze(Date.new(2015, 2, 28)) }
+
+        it { expect(age).to eq 15 }
+      end
+
+      context 'when today is 2016/02/28' do
+        before { Timecop.freeze(Date.new(2016, 2, 28)) }
+
+        it { expect(age).to eq 15 }
+      end
+
+      context 'when today is 2016/2/29' do
+        before { Timecop.freeze(Date.new(2016, 2, 29)) }
+
+        it { expect(age).to eq 16 }
+      end
+
+      after { Timecop.return }
+    end
   end
 
   describe '#age_at' do
@@ -74,6 +99,37 @@ describe AgeJp do
         before { Timecop.freeze(Date.new(2015, 1, 1)) }
 
         it { expect(age_jp).to eq 15 }
+      end
+
+      after { Timecop.return }
+    end
+
+    context "birthday is 2000/02/29. " do
+      let(:birthday) { Date.new(2000, 2, 29) }
+      subject(:age_jp) { birthday.age_jp }
+
+      context 'when today is 2015/02/27' do
+        before { Timecop.freeze(Date.new(2015, 2, 27)) }
+
+        it { expect(age_jp).to eq 14 }
+      end
+
+      context 'when today is 2015/02/28' do
+        before { Timecop.freeze(Date.new(2015, 2, 28)) }
+
+        it { expect(age_jp).to eq 15 }
+      end
+
+      context 'when today is 2016/02/28' do
+        before { Timecop.freeze(Date.new(2016, 2, 28)) }
+
+        it { expect(age_jp).to eq 16 }
+      end
+
+      context 'when today is 2016/2/29' do
+        before { Timecop.freeze(Date.new(2016, 2, 29)) }
+
+        it { expect(age_jp).to eq 16 }
       end
 
       after { Timecop.return }
