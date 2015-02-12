@@ -33,6 +33,8 @@ birthday.age_jp                             # 15 (日本の法律準拠)
 birthday.age_jp_at(date)                    # same as birthday.age_jp_at(Date.today)
 birthday.east_asian_age_reckoning           # 15 (数え年)
 birthday.east_asian_age_reckoning_at(date)  # same as birthday.east_asian_age_reckoning_at(Date.today)
+birthday.to_years_old(17)                   # 2017/01/01. 17歳の誕生日を返却
+birthday.to_years_old_jp(17)                # 2016/12/31. 17歳の年齢加算日(日本の法律準拠)を返却
 ```
 
 ## Contributing
