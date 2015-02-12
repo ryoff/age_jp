@@ -26,8 +26,8 @@ class Date
   alias_method :to_years_old, :next_year
 
   def to_years_old_jp(n)
-    return self.to_years_old(n).change(day: 28) if self.leap? && self.month == 2 && self.day == 29
+    return to_years_old(n).change(day: 28) if leap? && month == 2 && day == 29
 
-    self.to_years_old(n).yesterday
+    to_years_old(n).yesterday
   end
 end
