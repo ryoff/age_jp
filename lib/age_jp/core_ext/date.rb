@@ -22,4 +22,12 @@ class Date
   def east_asian_age_reckoning_at(date)
     AgeJp::Calculator.new(self).east_asian_age_reckoning_at(date)
   end
+
+  alias_method :to_years_old, :next_year
+
+  def to_years_old_jp(n)
+    return self.to_years_old(n).change(day: 28) if self.leap? && self.month == 2 && self.day == 29
+
+    self.to_years_old(n).yesterday
+  end
 end
