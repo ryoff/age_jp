@@ -285,37 +285,4 @@ describe AgeJp do
       end
     end
   end
-
-  describe "sample" do
-    context "birthday is 2000/01/01. and today is 2014/12/31 " do
-      let(:birthday) { Date.new(2000, 1, 1) }
-      before { Timecop.freeze(Date.new(2014, 12, 31)) }
-
-      describe '#age' do
-        it { expect(birthday.age).to eq 14 }
-      end
-
-      describe '#age_at(date)' do
-        it { expect(birthday.age_at(Date.today)).to eq 14 }
-      end
-
-      describe '#age_jp' do
-        it { expect(birthday.age_jp).to eq 15 }
-      end
-
-      describe '#age_jp_at(date)' do
-        it { expect(birthday.age_jp_at(Date.today)).to eq 15 }
-      end
-
-      describe '#east_asian_age_reckoning' do
-        it { expect(birthday.east_asian_age_reckoning).to eq 15 }
-      end
-
-      describe '#east_asian_age_reckoning_at(date)' do
-        it { expect(birthday.east_asian_age_reckoning_at(Date.today)).to eq 15 }
-      end
-
-      after { Timecop.return }
-    end
-  end
 end
