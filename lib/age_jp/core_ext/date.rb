@@ -1,6 +1,6 @@
 class Date
   def age
-    AgeJp::Calculator.new(self).age
+    AgeJp::Calculator.new(self).age_at
   end
 
   def age_at(date)
@@ -8,7 +8,7 @@ class Date
   end
 
   def age_jp
-    AgeJp::Calculator.new(self).age_jp
+    AgeJp::Calculator.new(self).age_jp_at
   end
 
   def age_jp_at(date)
@@ -16,7 +16,7 @@ class Date
   end
 
   def east_asian_age_reckoning
-    AgeJp::Calculator.new(self).east_asian_age_reckoning
+    AgeJp::Calculator.new(self).east_asian_age_reckoning_at
   end
 
   def east_asian_age_reckoning_at(date)

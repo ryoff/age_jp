@@ -4,49 +4,30 @@ module AgeJp
       @birthday = birthday
     end
 
-    def age
-      return unless valid_birthday?
-
-      calculate_age(today)
-    end
-
-    def age_at(date)
+    def age_at(date = today)
       return unless valid_birthday? && valid_date?(date)
 
       calculate_age(date)
     end
 
-    def age_jp
-      return unless valid_birthday?
-
-      calculate_age_jp(today)
-    end
-
-    def age_jp_at(date)
+    def age_jp_at(date = today)
       return unless valid_birthday? && valid_date?(date)
 
       calculate_age_jp(date)
     end
 
-    def east_asian_age_reckoning
-      return unless valid_birthday?
-
-      age = calculate_age(today)
-      until_birthday_this_year?(today) ? age + 2 : age + 1
-    end
-
-    def east_asian_age_reckoning_at(date)
+    def east_asian_age_reckoning_at(date = today)
       return unless valid_birthday? && valid_date?(date)
 
       age = calculate_age(date)
       until_birthday_this_year?(date) ? age + 2 : age + 1
     end
 
+    private
+
     def today
       Date.today
     end
-
-    private
 
     def calculate_age_jp(date)
       # 誕生日が閏日の場合は、日本の民法ではdateが閏年であろうとなかろうと、2/28に年齢加算される
