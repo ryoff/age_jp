@@ -27,14 +27,16 @@ Or install it yourself as:
 Timecop.freeze(Time.new(2014, 12, 31))
 
 birthday = Date.new(2000, 1, 1)
-birthday.age                                # 14 (通常の年齢)
-birthday.age_at(date)                       # same as birthday.age_at(Date.today)
-birthday.age_jp                             # 15 (日本の法律準拠)
-birthday.age_jp_at(date)                    # same as birthday.age_jp_at(Date.today)
-birthday.east_asian_age_reckoning           # 15 (数え年)
-birthday.east_asian_age_reckoning_at(date)  # same as birthday.east_asian_age_reckoning_at(Date.today)
-birthday.to_years_old(17)                   # 2017/01/01. 17歳の誕生日を返却
-birthday.to_years_old_jp(17)                # 2016/12/31. 17歳の年齢加算日(日本の法律準拠)を返却
+birthday.age                                      # 14 (通常の年齢)
+birthday.age_at(Date.today)                       # same as birthday.age_at
+birthday.age_jp                                   # 15 (日本の法律準拠)
+birthday.age_jp_at(Date.today)                    # same as birthday.age_jp_at
+birthday.east_asian_age_reckoning                 # 15 (数え年)
+birthday.east_asian_age_reckoning_at(Date.today)  # same as birthday.east_asian_age_reckoning_at
+birthday.insurance_age                            # 14 (保険年齢)
+birthday.insurance_age_at(Date.today)             # same as birthday.insurance_age_at
+birthday.to_years_old(17)                         # 2017/01/01. 17歳の誕生日を返却
+birthday.to_years_old_jp(17)                      # 2016/12/31. 17歳の年齢加算日(日本の法律準拠)を返却
 ```
 
 ## Contributing

@@ -76,6 +76,14 @@ describe AgeJp do
         it { expect(age_at).to eq 17 }
       end
     end
+
+    context 'invalid date' do
+      let(:birthday) { Date.new(2000, 1, 1) }
+      let(:invalid_date) { 'String' }
+      subject(:age_at) { birthday.age_at(invalid_date) }
+
+      it { expect { subject }.to raise_error(/invalid date/) }
+    end
   end
 
   describe '#age_jp' do
@@ -283,6 +291,58 @@ describe AgeJp do
 
         it { is_expected.to eq Date.new(2017, 2, 28) }
       end
+    end
+  end
+
+  describe '#insurance_age' do
+    context "birthday is 2000/01/01. " do
+      let(:birthday) { Date.new(2000, 1, 1) }
+      subject(:insurance_age) { birthday.insurance_age }
+
+      context 'when today is 2015/01/01' do
+        before { Timecop.freeze(Date.new(2015, 1, 1)) }
+
+        it { expect(insurance_age).to eq 15 }
+      end
+
+      context 'when today is 2015/07/31' do
+        before { Timecop.freeze(Date.new(2015, 7, 31)) }
+
+        it { expect(insurance_age).to eq 15 }
+      end
+
+      context 'when today is 2015/08/01' do
+        before { Timecop.freeze(Date.new(2015, 8, 1)) }
+
+        it { expect(insurance_age).to eq 16 }
+      end
+
+      after { Timecop.return }
+    end
+
+    context "birthday is 2000/07/31. " do
+      let(:birthday) { Date.new(2000, 7, 31) }
+      subject(:insurance_age) { birthday.insurance_age }
+
+      context 'when today is 2016/02/28' do
+        before { Timecop.freeze(Date.new(2016, 2, 28)) }
+
+        it { expect(insurance_age).to eq 15 }
+      end
+
+      context 'when today is 2016/02/29' do
+        before { Timecop.freeze(Date.new(2016, 2, 29)) }
+
+        it { expect(insurance_age).to eq 16 }
+      end
+
+      context 'when today is 2016/03/01' do
+        before { Timecop.freeze(Date.new(2016, 3, 1)) }
+
+        it { expect(insurance_age).to eq 16 }
+      end
+
+      after { Timecop.return }
     end
   end
 end

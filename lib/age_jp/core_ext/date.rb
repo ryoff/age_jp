@@ -23,6 +23,14 @@ class Date
     AgeJp::Calculator.new(self).east_asian_age_reckoning_at(date)
   end
 
+  def insurance_age
+    AgeJp::Calculator.new(self).insurance_age_at
+  end
+
+  def insurance_age_at(date)
+    AgeJp::Calculator.new(self).insurance_age_at(date)
+  end
+
   alias_method :to_years_old, :next_year
 
   def to_years_old_jp(n)
