@@ -1,5 +1,7 @@
 # AgeJp
 
+[![Build Status](https://travis-ci.org/ryoff/age_jp.svg?branch=master)](https://travis-ci.org/ryoff/age_jp)
+
 日本の法律に則った年齢計算です
 [年齢計算ニ関スル法律 - Wikipedia](http://ja.wikipedia.org/wiki/%E5%B9%B4%E9%BD%A2%E8%A8%88%E7%AE%97%E3%83%8B%E9%96%A2%E3%82%B9%E3%83%AB%E6%B3%95%E5%BE%8B)
 
