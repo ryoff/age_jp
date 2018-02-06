@@ -3,28 +3,27 @@ require 'spec_helper'
 describe AgeJp do
   describe '#age' do
     context "birthday is 2000/01/01. " do
+      around do |example|
+        travel_to(current_date) { example.run }
+      end
+
       let(:birthday) { Date.new(2000, 1, 1) }
-      subject(:age) { birthday.age }
+      subject { birthday.age }
 
       context 'when today is 2014/12/30' do
-        before { Timecop.freeze(Date.new(2014, 12, 30)) }
-
-        it { expect(age).to eq 14 }
+        let(:current_date) { Date.new(2014, 12, 30) }
+        it { is_expected.to eq 14 }
       end
 
       context 'when today is 2014/12/31' do
-        before { Timecop.freeze(Date.new(2014, 12, 31)) }
-
-        it { expect(age).to eq 14 }
+        let(:current_date) { Date.new(2014, 12, 31) }
+        it { is_expected.to eq 14 }
       end
 
       context 'when today is 2015/1/1' do
-        before { Timecop.freeze(Date.new(2015, 1, 1)) }
-
-        it { expect(age).to eq 15 }
+        let(:current_date) { Date.new(2015, 1, 1) }
+        it { is_expected.to eq 15 }
       end
-
-      after { Timecop.return }
     end
 
     context "birthday is 2000/02/29. " do
