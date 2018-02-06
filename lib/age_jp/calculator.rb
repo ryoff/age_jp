@@ -1,5 +1,7 @@
 module AgeJp
   class Calculator
+    attr_reader :birthday
+
     def initialize(birthday)
       @birthday = birthday
     end
@@ -30,7 +32,7 @@ module AgeJp
       age = calculate_age(date)
 
       # その年齢に到達した誕生日を取得
-      last_birthday = @birthday.next_year(age)
+      last_birthday = birthday.next_year(age)
 
       # 前回の誕生日から計算基準日までの月差分を取得
       month_diff = (date.year * 12 + date.month) - (last_birthday.year * 12 + last_birthday.month)
@@ -65,27 +67,27 @@ module AgeJp
     def calculate_age_jp(date)
       # 誕生日が閏日の場合は、日本の民法ではdateが閏年であろうとなかろうと、2/28に年齢加算される
       # つまり、誕生日が閏日 かつ dateが2/27の場合は、閏年であろうと無かろうと、年齢加算しない
-      return calculate_age(date) if leap_date?(@birthday) && february_twenty_seven?(date)
+      return calculate_age(date) if leap_date?(birthday) && february_twenty_seven?(date)
 
       (calculate_age(date) - calculate_age(date.tomorrow)).zero? ? calculate_age(date) : calculate_age(date.tomorrow)
     end
 
     def calculate_age(date)
       date_ymd_to_i     = date.strftime('%Y%m%d').to_i
-      birthday_ymd_to_i = @birthday.strftime('%Y%m%d').to_i
+      birthday_ymd_to_i = birthday.strftime('%Y%m%d').to_i
 
       # 誕生日が閏日 かつ dateが閏年ではない場合
-      birthday_ymd_to_i -= 1 if leap_date?(@birthday) && !date.leap?
+      birthday_ymd_to_i -= 1 if leap_date?(birthday) && !date.leap?
 
       (date_ymd_to_i - birthday_ymd_to_i) / 10_000
     end
 
     def until_birthday_this_year?(date)
-      date.strftime('%m%d').to_i < @birthday.strftime('%m%d').to_i
+      date.strftime('%m%d').to_i < birthday.strftime('%m%d').to_i
     end
 
     def valid_birthday?
-      valid_date?(@birthday)
+      valid_date?(birthday)
     end
 
     def valid_date?(date)
