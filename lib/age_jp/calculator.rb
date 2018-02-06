@@ -4,26 +4,26 @@ module AgeJp
       @birthday = birthday
     end
 
-    def age_at(date = Date.today)
+    def age_at(date = Date.current)
       return unless valid_birthday? && valid_date?(date)
 
       calculate_age(date)
     end
 
-    def age_jp_at(date = Date.today)
+    def age_jp_at(date = Date.current)
       return unless valid_birthday? && valid_date?(date)
 
       calculate_age_jp(date)
     end
 
-    def east_asian_age_reckoning_at(date = Date.today)
+    def east_asian_age_reckoning_at(date = Date.current)
       return unless valid_birthday? && valid_date?(date)
 
       age = calculate_age(date)
       until_birthday_this_year?(date) ? age + 2 : age + 1
     end
 
-    def insurance_age_at(date = Date.today)
+    def insurance_age_at(date = Date.current)
       return unless valid_birthday? && valid_date?(date)
 
       # date時点での満年齢を取得
