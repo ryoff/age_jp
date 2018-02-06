@@ -27,61 +27,57 @@ describe AgeJp do
     end
 
     context "birthday is 2000/02/29. " do
+      around do |example|
+        travel_to(current_date) { example.run }
+      end
+
       let(:birthday) { Date.new(2000, 2, 29) }
-      subject(:age) { birthday.age }
+      subject { birthday.age }
 
       context 'when today is 2015/02/28' do
-        before { Timecop.freeze(Date.new(2015, 2, 28)) }
-
-        it { expect(age).to eq 15 }
+        let(:current_date) { Date.new(2015, 2, 28) }
+        it { is_expected.to eq 15 }
       end
 
       context 'when today is 2016/02/28' do
-        before { Timecop.freeze(Date.new(2016, 2, 28)) }
-
-        it { expect(age).to eq 15 }
+        let(:current_date) { Date.new(2016, 2, 28) }
+        it { is_expected.to eq 15 }
       end
 
       context 'when today is 2016/2/29' do
-        before { Timecop.freeze(Date.new(2016, 2, 29)) }
-
-        it { expect(age).to eq 16 }
+        let(:current_date) { Date.new(2016, 2, 29) }
+        it { is_expected.to eq 16 }
       end
-
-      after { Timecop.return }
     end
   end
 
   describe '#age_at' do
     context "birthday is 2000/01/01. " do
       let(:birthday) { Date.new(2000, 1, 1) }
-      subject(:age_at) { birthday.age_at(today) }
+      subject { birthday.age_at(today) }
 
       context 'when date is 2016/12/30' do
         let(:today) { Date.new(2016, 12, 30) }
-
-        it { expect(age_at).to eq 16 }
+        it { is_expected.to eq 16 }
       end
 
       context 'when date is 2016/12/31' do
         let(:today) { Date.new(2016, 12, 31) }
-
-        it { expect(age_at).to eq 16 }
+        it { is_expected.to eq 16 }
       end
 
       context 'when date is 2017/1/1' do
         let(:today) { Date.new(2017, 1, 1) }
-
-        it { expect(age_at).to eq 17 }
+        it { is_expected.to eq 17 }
       end
     end
 
     context 'invalid date' do
       let(:birthday) { Date.new(2000, 1, 1) }
       let(:invalid_date) { 'String' }
-      subject(:age_at) { birthday.age_at(invalid_date) }
+      subject { birthday.age_at(invalid_date) }
 
-      it { expect { subject }.to raise_error(/invalid date/) }
+      it { expect { subject }.to raise_error(ArgumentError, /invalid date/) }
     end
   end
 
