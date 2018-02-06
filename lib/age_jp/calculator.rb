@@ -91,7 +91,8 @@ module AgeJp
     end
 
     def valid_date?(date)
-      fail ArgumentError, 'invalid date' unless date && date.is_a?(Date)
+      raise ArgumentError, 'invalid date' unless date && date.is_a?(Date)
+
       true
     end
 
